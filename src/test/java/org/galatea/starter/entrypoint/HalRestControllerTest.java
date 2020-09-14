@@ -44,7 +44,7 @@ public class HalRestControllerTest extends ASpringTest {
 
     this.mvc.perform(
         get("/hal").param(param, paramVal).accept(MediaType.APPLICATION_JSON_VALUE))
-        .andExpect(jsonPath("$['Meta Data']", is(result)));
+        .andExpect(jsonPath("$", is(result)));
   }
 
 }

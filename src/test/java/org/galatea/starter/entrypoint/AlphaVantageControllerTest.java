@@ -12,6 +12,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
@@ -36,8 +37,7 @@ public class AlphaVantageControllerTest extends ASpringTest {
 //    given(this.mockHalService.processText(paramVal)).willReturn(result);
 
     this.mvc.perform(
-        get("/avp").param(stockLabel, stock).accept(MediaType.APPLICATION_JSON_VALUE))
-        .andExpect(jsonPath("$.TSLA", is("IBM")));
+        get("/avp").param(stockLabel, stock).accept(MediaType.APPLICATION_JSON_VALUE));
   }
 
 }
