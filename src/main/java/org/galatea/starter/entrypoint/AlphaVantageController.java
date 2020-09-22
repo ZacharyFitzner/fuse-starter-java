@@ -1,21 +1,21 @@
 package org.galatea.starter.entrypoint;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import net.sf.aspect4log.Log;
 import net.sf.aspect4log.Log.Level;
 import org.apache.commons.collections4.IterableUtils;
-import org.galatea.starter.entrypoint.Stock.MetaData;
+import org.galatea.starter.domain.Book;
+import org.galatea.starter.domain.rpsy.bookrepo.BookRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -34,6 +34,17 @@ import java.util.Date;
 @Log(enterLevel = Level.INFO, exitLevel = Level.INFO)
 @RestController
 public class AlphaVantageController extends BaseRestController {
+
+  @Autowired
+  private BookRepository repository;
+
+  @GetMapping("/addBook")
+  public List<Book> saveBook(){
+
+    Book newBook = new Book(12, "Java", "James");
+    return repository.findOne();
+
+  }
 
   /**
    * Send the received text to the HalService to be processed and send the result out.
